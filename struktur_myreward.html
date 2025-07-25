@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Direktori - Sistem My Reward</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #2d3748;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #718096;
+        }
+
+        .folder-structure {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 25px;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 14px;
+        }
+
+        .folder-item {
+            display: flex;
+            align-items: center;
+            margin: 4px 0;
+            padding: 4px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .folder-item:hover {
+            background: #e2e8f0;
+        }
+
+        .folder-icon {
+            margin-right: 10px;
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+            color: #4a5568;
+        }
+
+        .folder-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-right: 8px;
+        }
+
+        .file-name {
+            color: #4a5568;
+            margin-right: 8px;
+        }
+
+        .description {
+            color: #718096;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        /* Simplified indentation */
+        .indent-0 { margin-left: 0px; }
+        .indent-1 { margin-left: 20px; }
+        .indent-2 { margin-left: 40px; }
+        .indent-3 { margin-left: 60px; }
+        .indent-4 { margin-left: 80px; }
+        .indent-5 { margin-left: 100px; }
+        .indent-6 { margin-left: 120px; }
+        .indent-7 { margin-left: 140px; }
+
+        .folder-group {
+            border-left: 1px solid #e2e8f0;
+            margin-left: 8px;
+            padding-left: 12px;
+        }
+
+        .expandable {
+            position: relative;
+        }
+
+        .expandable::before {
+            content: '▶';
+            position: absolute;
+            left: -12px;
+            color: #718096;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .expanded::before {
+            content: '▼';
+        }
+
+        /* Subtle highlighting for important files */
+        .important {
+            background: #f7fafc;
+            border-left: 3px solid #4299e1;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .stat-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #718096;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📁 Struktur Direktori Proyek</h1>
+            <p>Sistem My Reward - Arsitektur Clean Architecture</p>
+        </div>
+
+        <div class="folder-structure">
+            <!-- Root Directory -->
+            <div class="folder-item indent-0 important expandable expanded">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">My Reward/</span>
+                <span class="description">- Direktori utama proyek sistem reward</span>
+            </div>
+
+            <!-- Root Files -->
+            <div class="folder-item indent-1">
+                <span class="folder-icon">📄</span>
+                <span class="file-name">.gitignore</span>
+                <span class="description">- Daftar file yang diabaikan Git</span>
+            </div>
+
+            <div class="folder-item indent-1 important">
+                <span class="folder-icon">📄</span>
+                <span class="file-name">bootstrap.php</span>
+                <span class="description">- File inisialisasi dan konfigurasi aplikasi</span>
+            </div>
+
+            <div class="folder-item indent-1">
+                <span class="folder-icon">📄</span>
+                <span class="file-name">composer.json</span>
+                <span class="description">- Manajemen dependensi PHP dan autoloader</span>
+            </div>
+
+            <div class="folder-item indent-1">
+                <span class="folder-icon">📄</span>
+                <span class="file-name">Dockerfile</span>
+                <span class="description">- Konfigurasi containerization Docker</span>
+            </div>
+
+            <!-- Config Directory -->
+            <div class="folder-item indent-1 expandable expanded">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">config/</span>
+                <span class="description">- Direktori konfigurasi aplikasi</span>
+            </div>
+
+            <div class="folder-group">
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">app.php</span>
+                    <span class="description">- Konfigurasi umum aplikasi (timezone, locale, debug mode)</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">database.php</span>
+                    <span class="description">- Konfigurasi koneksi database MySQL</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">mail.php</span>
+                    <span class="description">- Konfigurasi layanan email SMTP</span>
+                </div>
+            </div>
+
+            <!-- Database Directory -->
+            <div class="folder-item indent-1 expandable expanded">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">database/</span>
+                <span class="description">- Direktori script SQL dan migrasi database</span>
+            </div>
+
+            <div class="folder-group">
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">users.sql</span>
+                    <span class="description">- Tabel pengguna (user, admin, customer service)</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">kupon.sql</span>
+                    <span class="description">- Tabel kupon digital dengan validasi otomatis</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">kupon_fisik.sql</span>
+                    <span class="description">- Tabel kupon fisik dengan validasi manual</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">penukaran_hadiah.sql</span>
+                    <span class="description">- Tabel transaksi penukaran reward</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">password_resets.sql</span>
+                    <span class="description">- Tabel token reset password dengan expiry</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">update_kupon_expiry.sql</span>
+                    <span class="description">- Script update kolom kedaluwarsa kupon</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">update_kupon_schema.sql</span>
+                    <span class="description">- Script update skema tabel kupon</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">update_penukaran_hadiah.sql</span>
+                    <span class="description">- Script update skema tabel penukaran</span>
+                </div>
+            </div>
+
+            <!-- Docs Directory -->
+            <div class="folder-item indent-1 expandable expanded">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">docs/</span>
+                <span class="description">- Direktori dokumentasi proyek</span>
+            </div>
+
+            <div class="folder-group">
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">RESET_PASSWORD.md</span>
+                    <span class="description">- Dokumentasi fitur reset password</span>
+                </div>
+            </div>
+
+            <!-- Public Directory -->
+            <div class="folder-item indent-1 important expandable expanded">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">public/</span>
+                <span class="description">- Direktori publik yang dapat diakses web server</span>
+            </div>
+
+            <div class="folder-group">
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">.htaccess</span>
+                    <span class="description">- Konfigurasi Apache web server dan URL rewriting</span>
+                </div>
+
+                <div class="folder-item indent-2 important">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">index.php</span>
+                    <span class="description">- Entry point utama aplikasi dan router</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">log.txt</span>
+                    <span class="description">- File log aktivitas sistem</span>
+                </div>
+
+                <div class="folder-item indent-2">
+                    <span class="folder-icon">📄</span>
+                    <span class="file-name">logout.php</span>
+                    <span class="description">- Script logout dan cleanup session</span>
+                </div>
+
+                <!-- Assets Directory -->
+                <div class="folder-item indent-2 expandable expanded">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">assets/</span>
+                    <span class="description">- Direktori aset statis (CSS, JS, gambar)</span>
+                </div>
+
+                <div class="folder-group">
+                    <!-- Images Directory -->
+                    <div class="folder-item indent-3 expandable expanded">
+                        <span class="folder-icon">📁</span>
+                        <span class="folder-name">images/</span>
+                        <span class="description">- Direktori gambar dan ilustrasi</span>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">placeholder.jpg</span>
+                            <span class="description">- Gambar placeholder default</span>
+                        </div>
+
+                        <!-- Animate Directory -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">animate/</span>
+                            <span class="description">- Animasi dan file interaktif</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">easy.gif</span>
+                                <span class="description">- Animasi kemudahan penggunaan</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">fastupload.gif</span>
+                                <span class="description">- Animasi upload cepat</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">giftcard.gif</span>
+                                <span class="description">- Animasi kartu hadiah</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">Lottie1.json</span>
+                                <span class="description">- File animasi Lottie interaktif</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">upload.gif</span>
+                                <span class="description">- Animasi proses upload</span>
+                            </div>
+                        </div>
+
+                        <!-- Material Directory -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">Material/</span>
+                            <span class="description">- Material design dan ikon aplikasi</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">Fast.png</span>
+                                <span class="description">- Ikon kecepatan sistem</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">Logo.png</span>
+                                <span class="description">- Logo utama aplikasi</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">Receipt.png</span>
+                                <span class="description">- Ikon struk/receipt transaksi</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">Voucher.png</span>
+                                <span class="description">- Ikon voucher dan kupon</span>
+                            </div>
+                        </div>
+
+                        <!-- Sliders Directory -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">sliders/</span>
+                            <span class="description">- Gambar slider homepage</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">slider_687f6f64040ed_1753182052.png</span>
+                                <span class="description">- Slide promosi 1</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">slider_687f6fa17cf9f_1753182113.png</span>
+                                <span class="description">- Slide promosi 2</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">slider_687f70c9ef849_1753182409.png</span>
+                                <span class="description">- Slide promosi 3</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">slider_687f5638f1935_1753175608.png</span>
+                                <span class="description">- Slide promosi 4</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">slider_687f56230fbfe_1753175587.png</span>
+                                <span class="description">- Slide promosi 5</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">slider_687f57520e864_1753175890.webp</span>
+                                <span class="description">- Slide promosi 6 (format WebP)</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">Slider3.png</span>
+                                <span class="description">- Template slide utama</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Source Directory -->
+            <div class="folder-item indent-1 important expandable expanded">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">src/</span>
+                <span class="description">- Source code utama dengan Clean Architecture</span>
+            </div>
+
+            <div class="folder-group">
+                <!-- Application Layer -->
+                <div class="folder-item indent-2 expandable expanded">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">Application/</span>
+                    <span class="description">- Lapisan aplikasi (Services & Use Cases)</span>
+                </div>
+
+                <div class="folder-group">
+                    <div class="folder-item indent-3 expandable expanded">
+                        <span class="folder-icon">📁</span>
+                        <span class="folder-name">Service/</span>
+                        <span class="description">- Business logic dan application services</span>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">AuthService.php</span>
+                            <span class="description">- Layanan autentikasi dan otorisasi pengguna</span>
+                        </div>
+
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">DashboardService.php</span>
+                            <span class="description">- Layanan data dashboard dan statistik</span>
+                        </div>
+
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">EmailService.php</span>
+                            <span class="description">- Layanan pengiriman email dan notifikasi</span>
+                        </div>
+
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">RewardRedemptionService.php</span>
+                            <span class="description">- Layanan penukaran reward dan validasi kupon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Domain Layer -->
+                <div class="folder-item indent-2 expandable expanded">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">Domain/</span>
+                    <span class="description">- Lapisan domain (Core business logic)</span>
+                </div>
+
+                <div class="folder-group">
+                    <div class="folder-item indent-3 expandable expanded">
+                        <span class="folder-icon">📁</span>
+                        <span class="folder-name">Entity/</span>
+                        <span class="description">- Domain entities dan business objects</span>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">User.php</span>
+                            <span class="description">- Entity pengguna dengan business rules</span>
+                        </div>
+                    </div>
+
+                    <div class="folder-item indent-3 expandable expanded">
+                        <span class="folder-icon">📁</span>
+                        <span class="folder-name">Repository/</span>
+                        <span class="description">- Repository interfaces (contracts)</span>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">UserRepositoryInterface.php</span>
+                            <span class="description">- Interface repository pengguna</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructure Layer -->
+                <div class="folder-item indent-2 expandable expanded">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">Infrastructure/</span>
+                    <span class="description">- Lapisan infrastruktur (Database & External)</span>
+                </div>
+
+                <div class="folder-group">
+                    <div class="folder-item indent-3 expandable expanded">
+                        <span class="folder-icon">📁</span>
+                        <span class="folder-name">Database/</span>
+                        <span class="description">- Koneksi dan konfigurasi database</span>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">Connection.php</span>
+                            <span class="description">- Class koneksi database MySQL PDO</span>
+                        </div>
+                    </div>
+
+                    <div class="folder-item indent-3 expandable expanded">
+                        <span class="folder-icon">📁</span>
+                        <span class="folder-name">Repository/</span>
+                        <span class="description">- Implementasi repository patterns</span>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-item indent-4">
+                            <span class="folder-icon">📄</span>
+                            <span class="file-name">UserRepository.php</span>
+                            <span class="description">- Implementasi repository pengguna</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Presentation Layer -->
+                <div class="folder-item indent-2 expandable expanded">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">Presentation/</span>
+                    <span class="description">- Lapisan presentasi (Controllers & Views)</span>
+                </div>
+
+                <div class="folder-group">
+                    <!-- Controllers -->
+                    <div class="folder-item indent-3 expandable expanded">
+                        <span class="folder-icon">📁</span>
+                        <span class="folder-name">Controller/</span>
+                        <span class="description">- HTTP controllers dan request handlers</span>
+                    </div>
+
+                    <div class="folder-group">
+                        <!-- Admin Controllers -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">Admin/</span>
+                            <span class="description">- Controllers untuk administrator</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">AdminDashboardController.php</span>
+                                <span class="description">- Controller dashboard admin</span>
+                            </div>
+                        </div>
+
+                        <!-- CS Controllers -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">Cs/</span>
+                            <span class="description">- Controllers untuk customer service</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">CsDashboardController.php</span>
+                                <span class="description">- Controller dashboard customer service</span>
+                            </div>
+                        </div>
+
+                        <!-- User Controllers -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">User/</span>
+                            <span class="description">- Controllers untuk pengguna umum</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">RewardController.php</span>
+                                <span class="description">- Controller sistem reward dan penukaran</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Views -->
+                    <div class="folder-item indent-3 expandable expanded">
+                        <span class="folder-icon">📁</span>
+                        <span class="folder-name">Views/</span>
+                        <span class="description">- Template dan tampilan antarmuka</span>
+                    </div>
+
+                    <div class="folder-group">
+                        <!-- Admin Views -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">admin/</span>
+                            <span class="description">- Tampilan untuk administrator</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">content.php</span>
+                                <span class="description">- Template konten utama admin</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">dashboard.php</span>
+                                <span class="description">- Halaman dashboard administrator</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">users.php</span>
+                                <span class="description">- Halaman manajemen pengguna</span>
+                            </div>
+
+                            <!-- Admin Partials -->
+                            <div class="folder-item indent-5 expandable expanded">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">partials/</span>
+                                <span class="description">- Komponen template admin</span>
+                            </div>
+
+                            <div class="folder-group">
+                                <div class="folder-item indent-6">
+                                    <span class="folder-icon">📄</span>
+                                    <span class="file-name">footer.php</span>
+                                    <span class="description">- Footer admin panel</span>
+                                </div>
+
+                                <div class="folder-item indent-6">
+<span class="file-name">header.php</span>
+                                    <span class="description">- Header dan navigasi admin</span>
+                                </div>
+
+                                <div class="folder-item indent-6">
+                                    <span class="folder-icon">📄</span>
+                                    <span class="file-name">pagination.php</span>
+                                    <span class="description">- Komponen paginasi data</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CS Views -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">cs/</span>
+                            <span class="description">- Tampilan untuk customer service</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">dashboard_cs.php</span>
+                                <span class="description">- Dashboard customer service</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">kelola_kupon_fisik.php</span>
+                                <span class="description">- Halaman kelola kupon fisik</span>
+                            </div>
+
+                            <!-- CS Partials -->
+                            <div class="folder-item indent-5 expandable expanded">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">partials/</span>
+                                <span class="description">- Komponen template CS</span>
+                            </div>
+
+                            <div class="folder-group">
+                                <div class="folder-item indent-6">
+                                    <span class="folder-icon">📄</span>
+                                    <span class="file-name">footer.php</span>
+                                    <span class="description">- Footer CS panel</span>
+                                </div>
+
+                                <div class="folder-item indent-6">
+                                    <span class="folder-icon">📄</span>
+                                    <span class="file-name">header.php</span>
+                                    <span class="description">- Header dan navigasi CS</span>
+                                </div>
+
+                                <div class="folder-item indent-6">
+                                    <span class="folder-icon">📄</span>
+                                    <span class="file-name">pagination_dashboard.php</span>
+                                    <span class="description">- Paginasi dashboard CS</span>
+                                </div>
+
+                                <div class="folder-item indent-6">
+                                    <span class="folder-icon">📄</span>
+                                    <span class="file-name">pagination.php</span>
+                                    <span class="description">- Paginasi umum CS</span>
+                                </div>
+
+                                <!-- CS Tables -->
+                                <div class="folder-item indent-6 expandable expanded">
+                                    <span class="folder-icon">📁</span>
+                                    <span class="folder-name">tables/</span>
+                                    <span class="description">- Komponen tabel data CS</span>
+                                </div>
+
+                                <div class="folder-group">
+                                    <div class="folder-item indent-7">
+                                        <span class="folder-icon">📄</span>
+                                        <span class="file-name">expired_unvalidated_tbody.php</span>
+                                        <span class="description">- Tabel kupon expired & belum divalidasi</span>
+                                    </div>
+
+                                    <div class="folder-item indent-7">
+                                        <span class="folder-icon">📄</span>
+                                        <span class="file-name">pending_vouchers_tbody.php</span>
+                                        <span class="description">- Tabel voucher menunggu validasi</span>
+                                    </div>
+
+                                    <div class="folder-item indent-7">
+                                        <span class="folder-icon">📄</span>
+                                        <span class="file-name">redemptions_tbody.php</span>
+                                        <span class="description">- Tabel transaksi penukaran</span>
+                                    </div>
+
+                                    <div class="folder-item indent-7">
+                                        <span class="folder-icon">📄</span>
+                                        <span class="file-name">validated_vouchers_tbody.php</span>
+                                        <span class="description">- Tabel voucher tervalidasi</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shared Partials -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">partials/</span>
+                            <span class="description">- Komponen template bersama</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">footer.php</span>
+                                <span class="description">- Footer aplikasi global</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">header.php</span>
+                                <span class="description">- Header aplikasi global</span>
+                            </div>
+                        </div>
+
+                        <!-- User Views -->
+                        <div class="folder-item indent-4 expandable expanded">
+                            <span class="folder-icon">📁</span>
+                            <span class="folder-name">user/</span>
+                            <span class="description">- Tampilan untuk pengguna umum</span>
+                        </div>
+
+                        <div class="folder-group">
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">forgot_password.php</span>
+                                <span class="description">- Halaman lupa password</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">home.php</span>
+                                <span class="description">- Halaman beranda pengguna</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">login.php</span>
+                                <span class="description">- Halaman login pengguna</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">register.php</span>
+                                <span class="description">- Halaman registrasi pengguna baru</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">reset_password.php</span>
+                                <span class="description">- Halaman reset password</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">riwayat.php</span>
+                                <span class="description">- Halaman riwayat transaksi</span>
+                            </div>
+
+                            <div class="folder-item indent-5">
+                                <span class="folder-icon">📄</span>
+                                <span class="file-name">tukar_hadiah.php</span>
+                                <span class="description">- Halaman penukaran hadiah</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Expandable folders
+            const expandableItems = document.querySelectorAll('.expandable');
+            
+            expandableItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Toggle expanded class
+                    this.classList.toggle('expanded');
+                    
+                    // Find the next folder-group sibling
+                    let nextElement = this.nextElementSibling;
+                    if (nextElement && nextElement.classList.contains('folder-group')) {
+                        if (this.classList.contains('expanded')) {
+                            nextElement.style.display = 'block';
+                            nextElement.style.animation = 'slideDown 0.3s ease';
+                        } else {
+                            nextElement.style.animation = 'slideUp 0.3s ease';
+                            setTimeout(() => {
+                                if (!this.classList.contains('expanded')) {
+                                    nextElement.style.display = 'none';
+                                }
+                            }, 300);
+                        }
+                    }
+                });
+            });
+
+            // Hover effects for all folder items
+            const folderItems = document.querySelectorAll('.folder-item');
+            folderItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(3px)';
+                });
+
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+
+            // Animate stats on scroll
+            const stats = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.textContent;
+                        let currentValue = 0;
+                        const increment = finalValue.includes('+') ? 
+                            parseInt(finalValue) / 30 : 
+                            parseInt(finalValue) / 15;
+
+                        const counter = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= parseInt(finalValue)) {
+                                target.textContent = finalValue;
+                                clearInterval(counter);
+                            } else {
+                                target.textContent = Math.floor(currentValue) + (finalValue.includes('+') ? '+' : '');
+                            }
+                        }, 50);
+                    }
+                });
+            });
+
+            stats.forEach(stat => observer.observe(stat));
+        });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-5px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            @keyframes slideUp {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+                                    <span class="folder-icon">📄</span>
